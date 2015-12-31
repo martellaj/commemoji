@@ -2,10 +2,14 @@
   "name": "commemoji",
   "version": "1.0.0",
   "description": "A command line tool to make emojify your boring commit messages. ",
+  "bin": {
+    "commemoji": "./app.js"
+  },
   "main": "app.js",
   "author": "Joe Martella",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^1.1.1",
     "commander": "^2.9.0"
   }
 }

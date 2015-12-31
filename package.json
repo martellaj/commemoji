@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "emojilib": "^1.1.0"
   }
 }

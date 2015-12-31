@@ -1,0 +1,11 @@
+{
+  "name": "commemoji",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "Joe Martella",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}

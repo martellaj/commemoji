@@ -32,7 +32,7 @@ $ commemoji -mk "Fix bug causing random emojis to be returned." "bug"
 * :checkered_flag: "windows" | "w" - When fixing something on Windows.
 * :fire: "removal" | "r" - When removing code or files.
 * :green_heart: "ci" - When fixing the CI build.
-* :green_check_mark: "tests" | "t" - When adding tests.
+* :white_check_mark: "tests" | "t" - When adding tests.
 * :lock: "security" | "s" - When dealing with security.
 * :arrow_up: "upgrade dep" | "ud" - When upgrading dependencies.
 * :arrow_down: "downgrade dep" | "dd" - When downgrading dependencies.

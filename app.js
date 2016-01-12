@@ -35,6 +35,8 @@ function getEmoji() {
         // If the keyword matches, add the emoji to an array of options.
         if (emojis[key].keywords && emojis[key].keywords.indexOf(program.args[1]) > -1) {
           options.push(key);
+        } else if (key.indexOf(program.args[1]) > -1) {
+          options.push(key);
         }
       }
     }

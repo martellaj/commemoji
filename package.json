@@ -5,6 +5,9 @@
   "bin": {
     "commemoji": "./app.js"
   },
+  "scripts": {
+    "undo": "git reset --soft HEAD~"
+  },
   "main": "app.js",
   "author": "Joe Martella",
   "license": "MIT",

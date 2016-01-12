@@ -13,7 +13,22 @@ program
 
 // List commit types underneath help.
 program.on('--help', function () {
-  // TODO: Add list of commit types.
+  console.log('  Common commit types:');
+  console.log('');
+  console.log('  * "bug" | "b" - When fixing a bug.');
+  console.log('  * "formatting" | "f" - When improving the format/structure of the code.'); 
+  console.log('  * "docs" | "d" - When writing docs.');
+  console.log('  * "perf" | "p" - When improving performance.');
+  console.log('  * "linux" | "l" - When fixing something on Linux.');
+  console.log('  * "mac" | "m" - When fixing something on Mac OS.');
+  console.log('  * "windows" | "w" - When fixing something on Windows.');
+  console.log('  * "removal" | "r" - When removing code or files.');
+  console.log('  * "ci" - When fixing the CI build.');
+  console.log('  * "tests" | "t" - When adding tests.');
+  console.log('  * "security" | "s" - When dealing with security.');    
+  console.log('  * "upgrade dep" | "ud" - When upgrading dependencies.');
+  console.log('  * "downgrade dep" | "dd" - When downgrading dependencies.'); 
+  console.log('  * "lint" - When removing/adding linter warnings.');         
 });
 
 // Only way to get name to show up in help AFAIK.
@@ -106,7 +121,7 @@ function getEmoji() {
         return ':green_heart: ';
       } else if (type === 'upgrade dep' || type === 'ud') {
         return ':arrow_up: ';
-      } else if (type === 'downgrade dep' || type === 'dp') {
+      } else if (type === 'downgrade dep' || type === 'dd') {
         return ':arrow_down: ';
       } else if (type === 'lint' || type === 'linter') {
         return ':shirt: ';

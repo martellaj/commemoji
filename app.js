@@ -12,7 +12,7 @@ program
   .parse(process.argv);
 
 if (program.M) {
-  exec('git commit -m "' + program.args[0] + getEmoji() + '"', function (error, stdout, stderr) {
+  exec('git commit -m "' + getEmoji() + program.args[0] + '"', function (error, stdout, stderr) {
     console.log(stdout);
   });
 } else {
@@ -52,7 +52,7 @@ function getEmoji() {
         }
       }
 
-      return ' :' + result + ':';
+      return ':' + result + ': ';
     }
   // If no keyword is supplied, get a random emoji from the library.
   } else {
@@ -65,6 +65,6 @@ function getEmoji() {
       }
     }
 
-    return ' :' + result + ':';
+    return ':' + result + ': ';
   }
 }

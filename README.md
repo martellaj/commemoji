@@ -22,6 +22,9 @@ Want to standardize? Are you fixing a bug, writing docs, adding tests, or someth
 $ commemoji -mk "Fix bug causing random emojis to be returned." "bug"
 ```
 
+#### Common commit types
+* :bug: "bug" | "b" - When fixing a bug.'
+
 ### Search for an emoji
 Want to express something specific with your commit? Feel a certain way? Use the `-s` flag with a keyword to search for.
 

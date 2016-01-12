@@ -22,9 +22,15 @@ process.argv[1] = 'commemoji';
 program.parse(process.argv);
 
 if (program.M) {
-  exec('git commit -m "' + getEmoji() + program.args[0] + '"', function (error, stdout, stderr) {
-    console.log(stdout);
-  });
+  var emoji = getEmoji;
+  
+  if (emoji.error) {
+    console.log(chalk.red(emoji.error));
+  } else {
+    exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+      console.log(stdout);
+    }); 
+  }
 } else {
   console.log(chalk.red('You have to specify a commit message using the -m flag.'));
 }
@@ -34,6 +40,12 @@ if (program.M) {
  * @desc Gets an emoji to add to the commit message.
  */
 function getEmoji() {
+  if (program.S && program.K) {
+    return {
+      error: 'You can\'t search and use a common commit type at the same time.'
+    };
+  }
+  
   // If a search term is supplied, try to find one that is relevant.
   if (program.S) {
     var options = [];

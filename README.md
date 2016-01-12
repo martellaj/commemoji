@@ -24,6 +24,19 @@ $ commemoji -mk "Fix bug causing random emojis to be returned." "bug"
 
 #### Common commit types
 * :bug: "bug" | "b" - When fixing a bug.'
+* :art: "formatting" | "f" - When improving the format/structure of the code.
+* :memo: "docs" | "d" - When writing docs.
+* :racehorse: "perf" | "p" - When improving performance.
+* :penguin: "linux" | "l" - When fixing something on Linux.
+* :apple: "mac" | "m" - When fixing something on Mac OS.
+* :checkered_flag: "windows" | "w" - When fixing something on Windows.
+* :fire: "removal" | "r" - When removing code or files.
+* :green_heart: "ci" - When fixing the CI build.
+* :green_check_mark: "tests" | "t" - When adding tests.
+* :lock: "security" | "s" - When dealing with security.
+* :arrow_up: "upgrade dep" | "ud" - When upgrading dependencies.
+* :arrow_down: "downgrade dep" | "dd" - When downgrading dependencies.
+* :shirt: "lint" - When removing/adding linter warnings. 
 
 ### Search for an emoji
 Want to express something specific with your commit? Feel a certain way? Use the `-s` flag with a keyword to search for.

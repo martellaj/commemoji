@@ -8,7 +8,8 @@ var emojis = require("emojilib")
 program
   .version('1.0.0')
   .option('-m', 'Your plain, old commit message.')
-  .option('-k', 'A keyword to get a relevant emoji.')
+  .option('-s', 'A seach query to get a relevant emoji.')
+  .option('-k', 'A keyword pertaining to common commit types.')
   .parse(process.argv);
 
 if (program.M) {
@@ -24,8 +25,8 @@ if (program.M) {
  * @desc Gets an emoji to add to the commit message.
  */
 function getEmoji() {
-  // If a keyword was supplied, try to find one that is relevant.
-  if (program.K) {
+  // If a search term is supplied, try to find one that is relevant.
+  if (program.S) {
     var options = [];
 
     // Search over all emojis, looking for a matching keyword.
@@ -40,7 +41,7 @@ function getEmoji() {
 
     // If any options have been found, return a random option.
     if (options.length > 0) {
-      return ' :' + options[Math.floor(Math.random() * options.length)] + ':';
+      return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
     // If there are no options, just get a random emoji from the library.
     } else {
       var result;

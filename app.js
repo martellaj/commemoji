@@ -9,8 +9,17 @@ program
   .version('1.0.0')
   .option('-m', 'Your plain, old commit message.')
   .option('-s', 'A seach query to get a relevant emoji.')
-  .option('-k', 'A keyword pertaining to common commit types.')
-  .parse(process.argv);
+  .option('-k', 'A keyword pertaining to common commit types.');
+
+// List commit types underneath help.
+program.on('--help', function () {
+  // TODO: Add list of commit types.
+});
+
+// Only way to get name to show up in help AFAIK.
+process.argv[1] = 'commemoji';
+
+program.parse(process.argv);
 
 if (program.M) {
   exec('git commit -m "' + getEmoji() + program.args[0] + '"', function (error, stdout, stderr) {

@@ -51,7 +51,7 @@ if (program.S && program.K) {
 } else if (program.K) {
   emoji = getEmoji.byCommitType(program.args[1]);
 } else {
-  emoji = getEmoji.getEmoji();
+  emoji = getEmoji.random();
 }
 
 // Print an error if there is one.

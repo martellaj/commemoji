@@ -7,7 +7,7 @@ module.exports = function (program) {
    * @param query The query to search the emoji list for.
    * @returns A random emoji to append.
    */
-  function bySearch(query) {
+  function bySearch (query) {
     var options = [];
 
     // Search over all emojis, looking for a matching keyword.
@@ -46,7 +46,7 @@ module.exports = function (program) {
    * @param commitType The commit type.
    * @returns The emoji corresponding to the commit type.
    */
-  function byCommitType(commitType) {
+  function byCommitType (commitType) {
     var type = program.args[1];
 
     if (type === 'bug' || type === 'b') {
@@ -85,39 +85,28 @@ module.exports = function (program) {
       };
     }
   }
-
+  
   /**
-  * @name getEmoji
-  * @desc Gets an emoji to add to the commit message.
-  */
-  function getEmoji() {
-    if (program.S && program.K) {
-      return {
-        error: "You can't search and use a common commit type at the same time."
-      };
-    } else {
-      if (program.K) {
-        
+   * @name
+   * @desc Returns a random emoji.
+   * @returns A random emoji.
+   */
+  function random () {
+    var result;
+    var count = 0;
 
-        // If no keyword is supplied, get a random emoji from the library.
-      } else {
-        var result;
-        var count = 0;
-
-        for (var prop in emojis) {
-          if (Math.random() < 1 / ++count) {
-            result = prop;
-          }
-        }
-
-        return ':' + result + ': ';
+    for (var prop in emojis) {
+      if (Math.random() < 1 / ++count) {
+        result = prop;
       }
     }
+
+    return ':' + result + ': ';
   }
 
   return {
-    getEmoji: getEmoji,
     bySearch: bySearch,
-    byCommitType: byCommitType
+    byCommitType: byCommitType,
+    random: random
   };
 };

@@ -16,7 +16,7 @@ program.on('--help', function () {
   console.log('  Common commit types:');
   console.log('');
   console.log('  * "bug" | "b" - When fixing a bug.');
-  console.log('  * "formatting" | "f" - When improving the format/structure of the code.'); 
+  console.log('  * "formatting" | "f" - When improving the format/structure of the code.');
   console.log('  * "docs" | "d" - When writing docs.');
   console.log('  * "perf" | "p" - When improving performance.');
   console.log('  * "linux" | "l" - When fixing something on Linux.');
@@ -25,10 +25,10 @@ program.on('--help', function () {
   console.log('  * "removal" | "r" - When removing code or files.');
   console.log('  * "ci" - When fixing the CI build.');
   console.log('  * "tests" | "t" - When adding tests.');
-  console.log('  * "security" | "s" - When dealing with security.');    
+  console.log('  * "security" | "s" - When dealing with security.');
   console.log('  * "upgrade dep" | "ud" - When upgrading dependencies.');
-  console.log('  * "downgrade dep" | "dd" - When downgrading dependencies.'); 
-  console.log('  * "lint" - When removing/adding linter warnings.');         
+  console.log('  * "downgrade dep" | "dd" - When downgrading dependencies.');
+  console.log('  * "lint" - When removing/adding linter warnings.');
 });
 
 // Only way to get name to show up in help AFAIK.
@@ -38,13 +38,17 @@ program.parse(process.argv);
 
 if (program.M) {
   var emoji = emoji.getEmoji();
-  
+
   if (emoji.error) {
     console.log(chalk.red(emoji.error));
   } else {
     exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
-      console.log(stdout);
-    }); 
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(stdout);
+      }
+    });
   }
 } else {
   console.log(chalk.red('You have to specify a commit message using the -m flag.'));

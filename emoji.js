@@ -1,14 +1,14 @@
 module.exports = function (program) {
-  var emojis = require("emojilib");
-  
+  var emojis = require('emojilib');
+
   /**
   * @name getEmoji
   * @desc Gets an emoji to add to the commit message.
   */
-  function getEmoji() {
+  function getEmoji () {
     if (program.S && program.K) {
       return {
-        error: 'You can\'t search and use a common commit type at the same time.'
+        error: "You can't search and use a common commit type at the same time."
       };
     } else {
       // If a search term is supplied, try to find one that is relevant.
@@ -30,7 +30,7 @@ module.exports = function (program) {
         // If any options have been found, return a random option.
         if (options.length > 0) {
           return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
-          // If there are no options, just get a random emoji from the library.
+        // If there are no options, just get a random emoji from the library.
         } else {
           var result;
           var count = 0;
@@ -79,10 +79,10 @@ module.exports = function (program) {
         } else {
           return {
             error: 'That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'
-          }
+          };
         }
-      
-        // If no keyword is supplied, get a random emoji from the library.
+
+      // If no keyword is supplied, get a random emoji from the library.
       } else {
         var result;
         var count = 0;

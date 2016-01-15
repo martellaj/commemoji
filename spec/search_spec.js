@@ -3,11 +3,10 @@
 describe('emoji searches', function () {
   it('returns an expected result of "fire" search', function () {
     var emoji = require('../emoji')({
-      S: true,
-      args: [null, 'fire']
+      S: true
     });
 
-    var result = emoji.getEmoji().trim();
+    var result = emoji.search('fire').trim();
     var expectedResults = [':fire:', ':fireworks:', ':fire_engine:', ':name_badge:', ':sparkle:'];
 
     expect(expectedResults.indexOf(result) > -1).toBe(true);
@@ -15,11 +14,10 @@ describe('emoji searches', function () {
 
   it('returns a result for a search with no matches', function () {
     var emoji = require('../emoji')({
-      S: true,
-      args: [null, 'bagel']
+      S: true
     });
 
-    var result = emoji.getEmoji();
+    var result = emoji.search('bagel');
 
     expect(result).not.toBe(null);
   });

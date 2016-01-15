@@ -3,7 +3,7 @@
 var program = require('commander');
 var exec = require('child_process').exec;
 var chalk = require('chalk');
-var emoji = require('./emoji')(program);
+var getEmoji = require('./get_emoji')(program);
 
 program
   .version('1.0.0')
@@ -34,27 +34,33 @@ program.on('--help', function () {
 // Only way to get name to show up in help AFAIK.
 process.argv[1] = 'commemoji';
 
+// Parse the arguments supplied to the app.
 program.parse(process.argv);
 
-if (program.M) {
-  var emoji;
-  if (program.S) {
-    emoji = emoji.search(program.args[1]);
-  } else {
-    emoji = emoji.getEmoji();
-  }
-
-  if (emoji.error) {
-    console.log(chalk.red(emoji.error));
-  } else {
-    exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(stdout);
-      }
-    });
-  }
+// The emoji to append to the commit message.
+var emoji;
+  
+// Depending on chosen flags, get an emoji is whichever way the user signified.
+if (program.S && program.K) {
+  console.log(chalk.red('You can\'t search and use a common commit type at the same time.'));
+  process.exit();
+// If the "-s" flag, search for an emoji.
+} else if (program.S) {
+  emoji = getEmoji.search(program.args[1]);
 } else {
-  console.log(chalk.red('You have to specify a commit message using the -m flag.'));
+  emoji = getEmoji.getEmoji();
+}
+
+// Print an error if there is one.
+if (emoji.error) {
+  console.log(chalk.red(emoji.error));
+// If there is no error, "git commit" with the emojified commit message.
+} else {
+  exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(stdout);
+    }
+  });
 }

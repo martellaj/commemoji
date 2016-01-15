@@ -14,9 +14,9 @@ module.exports = function (program) {
     for (var key in emojis) {
       if (emojis.hasOwnProperty(key)) {
         // If the keyword matches, add the emoji to an array of options.
-        if (emojis[key].keywords && emojis[key].keywords.indexOf(program.args[1]) > -1) {
+        if (emojis[key].keywords && emojis[key].keywords.indexOf(query) > -1) {
           options.push(key);
-        } else if (key.indexOf(program.args[1]) > -1) {
+        } else if (key.indexOf(query) > -1) {
           options.push(key);
         }
       }

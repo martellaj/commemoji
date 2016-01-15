@@ -23,7 +23,7 @@ $ commemoji -mk "Fix bug causing random emojis to be returned." "bug"
 ```
 
 #### Common commit types
-* :bug: "bug" | "b" - When fixing a bug.'
+* :bug: "bug" | "b" - When fixing a bug.
 * :art: "formatting" | "f" - When improving the format/structure of the code.
 * :memo: "docs" | "d" - When writing docs.
 * :racehorse: "perf" | "p" - When improving performance.

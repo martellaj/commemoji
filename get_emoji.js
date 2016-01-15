@@ -7,7 +7,7 @@ module.exports = function (program) {
    * @param query The query to search the emoji list for.
    * @returns A random emoji to append.
    */
-  function search (query) {
+  function bySearch(query) {
     var options = [];
 
     // Search over all emojis, looking for a matching keyword.
@@ -39,57 +39,67 @@ module.exports = function (program) {
       return ':' + result + ': ';
     }
   }
+  
+  /**
+   * @name byCommitType
+   * @desc Returns the emoji for the given commit type.
+   * @param commitType The commit type.
+   * @returns The emoji corresponding to the commit type.
+   */
+  function byCommitType(commitType) {
+    var type = program.args[1];
+
+    if (type === 'bug' || type === 'b') {
+      return ':bug: ';
+    } else if (type === 'formatting' || type === 'f') {
+      return ':art: ';
+    } else if (type === 'documentation' || type === 'docs' || type === 'd') {
+      return ':memo: ';
+    } else if (type === 'performance' || type === 'perf' || type === 'p') {
+      return ':racehorse: ';
+    } else if (type === 'linux' || type === 'l') {
+      return ':penguin: ';
+    } else if (type === 'mac' || type === 'm') {
+      return ':apple: ';
+    } else if (type === 'windows' || type === 'w') {
+      return ':checkered_flag: ';
+    } else if (type === 'removal' || type === 'remove' || type === 'r') {
+      return ':fire: ';
+    } else if (type === 'tests' || type === 'test' || type === 't') {
+      return ':white_check_mark: ';
+    } else if (type === 'security' || type === 's') {
+      return ':lock: ';
+    } else if (type === 'leak' || type === 'mem') {
+      return ':non-potable_water: ';
+    } else if (type === 'ci') {
+      return ':green_heart: ';
+    } else if (type === 'upgrade dep' || type === 'ud') {
+      return ':arrow_up: ';
+    } else if (type === 'downgrade dep' || type === 'dd') {
+      return ':arrow_down: ';
+    } else if (type === 'lint' || type === 'linter') {
+      return ':shirt: ';
+    } else {
+      return {
+        error: 'That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'
+      };
+    }
+  }
 
   /**
   * @name getEmoji
   * @desc Gets an emoji to add to the commit message.
   */
-  function getEmoji () {
+  function getEmoji() {
     if (program.S && program.K) {
       return {
         error: "You can't search and use a common commit type at the same time."
       };
     } else {
       if (program.K) {
-        var type = program.args[1];
+        
 
-        if (type === 'bug' || type === 'b') {
-          return ':bug: ';
-        } else if (type === 'formatting' || type === 'f') {
-          return ':art: ';
-        } else if (type === 'documentation' || type === 'docs' || type === 'd') {
-          return ':memo: ';
-        } else if (type === 'performance' || type === 'perf' || type === 'p') {
-          return ':racehorse: ';
-        } else if (type === 'linux' || type === 'l') {
-          return ':penguin: ';
-        } else if (type === 'mac' || type === 'm') {
-          return ':apple: ';
-        } else if (type === 'windows' || type === 'w') {
-          return ':checkered_flag: ';
-        } else if (type === 'removal' || type === 'remove' || type === 'r') {
-          return ':fire: ';
-        } else if (type === 'tests' || type === 'test' || type === 't') {
-          return ':white_check_mark: ';
-        } else if (type === 'security' || type === 's') {
-          return ':lock: ';
-        } else if (type === 'leak' || type === 'mem') {
-          return ':non-potable_water: ';
-        } else if (type === 'ci') {
-          return ':green_heart: ';
-        } else if (type === 'upgrade dep' || type === 'ud') {
-          return ':arrow_up: ';
-        } else if (type === 'downgrade dep' || type === 'dd') {
-          return ':arrow_down: ';
-        } else if (type === 'lint' || type === 'linter') {
-          return ':shirt: ';
-        } else {
-          return {
-            error: 'That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'
-          };
-        }
-
-      // If no keyword is supplied, get a random emoji from the library.
+        // If no keyword is supplied, get a random emoji from the library.
       } else {
         var result;
         var count = 0;
@@ -107,6 +117,7 @@ module.exports = function (program) {
 
   return {
     getEmoji: getEmoji,
-    search: search
+    bySearch: bySearch,
+    byCommitType: byCommitType
   };
 };

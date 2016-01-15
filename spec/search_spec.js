@@ -6,7 +6,7 @@ describe('emoji searches', function () {
       S: true
     });
 
-    var result = getEmoji.search('fire').trim();
+    var result = getEmoji.bySearch('fire').trim();
     var expectedResults = [':fire:', ':fireworks:', ':fire_engine:', ':name_badge:', ':sparkle:'];
 
     expect(expectedResults.indexOf(result) > -1).toBe(true);
@@ -17,7 +17,7 @@ describe('emoji searches', function () {
       S: true
     });
 
-    var result = getEmoji.search('bagel');
+    var result = getEmoji.bySearch('bagel');
 
     expect(result).not.toBe(null);
   });

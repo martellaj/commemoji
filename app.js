@@ -44,9 +44,12 @@ var emoji;
 if (program.S && program.K) {
   console.log(chalk.red('You can\'t search and use a common commit type at the same time.'));
   process.exit();
-// If the "-s" flag, search for an emoji.
+// If the "-s" flag is on, search for an emoji.
 } else if (program.S) {
-  emoji = getEmoji.search(program.args[1]);
+  emoji = getEmoji.bySearch(program.args[1]);
+// If the "-k" flag is on, get the emoji corresponding to the commit type.
+} else if (program.K) {
+  emoji = getEmoji.byCommitType(program.args[1]);
 } else {
   emoji = getEmoji.getEmoji();
 }

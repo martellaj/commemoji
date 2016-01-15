@@ -37,7 +37,12 @@ process.argv[1] = 'commemoji';
 program.parse(process.argv);
 
 if (program.M) {
-  var emoji = emoji.getEmoji();
+  var emoji;
+  if (program.S) {
+    emoji = emoji.search(program.args[1]);
+  } else {
+    emoji = emoji.getEmoji();
+  }
 
   if (emoji.error) {
     console.log(chalk.red(emoji.error));

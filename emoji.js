@@ -2,6 +2,45 @@ module.exports = function (program) {
   var emojis = require('emojilib');
 
   /**
+   * @name search
+   * @desc Returns a result of keyword and code name search.
+   * @param query The query to search the emoji list for.
+   * @returns A random emoji to append.
+   */
+  function search (query) {
+    var options = [];
+
+    // Search over all emojis, looking for a matching keyword.
+    for (var key in emojis) {
+      if (emojis.hasOwnProperty(key)) {
+        // If the keyword matches, add the emoji to an array of options.
+        if (emojis[key].keywords && emojis[key].keywords.indexOf(program.args[1]) > -1) {
+          options.push(key);
+        } else if (key.indexOf(program.args[1]) > -1) {
+          options.push(key);
+        }
+      }
+    }
+
+    // If any options have been found, return a random option.
+    if (options.length > 0) {
+      return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
+      // If there are no options, just get a random emoji from the library.
+    } else {
+      var result;
+      var count = 0;
+
+      for (var prop in emojis) {
+        if (Math.random() < 1 / ++count) {
+          result = prop;
+        }
+      }
+
+      return ':' + result + ': ';
+    }
+  }
+
+  /**
   * @name getEmoji
   * @desc Gets an emoji to add to the commit message.
   */
@@ -11,39 +50,7 @@ module.exports = function (program) {
         error: "You can't search and use a common commit type at the same time."
       };
     } else {
-      // If a search term is supplied, try to find one that is relevant.
-      if (program.S) {
-        var options = [];
-
-        // Search over all emojis, looking for a matching keyword.
-        for (var key in emojis) {
-          if (emojis.hasOwnProperty(key)) {
-            // If the keyword matches, add the emoji to an array of options.
-            if (emojis[key].keywords && emojis[key].keywords.indexOf(program.args[1]) > -1) {
-              options.push(key);
-            } else if (key.indexOf(program.args[1]) > -1) {
-              options.push(key);
-            }
-          }
-        }
-
-        // If any options have been found, return a random option.
-        if (options.length > 0) {
-          return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
-        // If there are no options, just get a random emoji from the library.
-        } else {
-          var result;
-          var count = 0;
-
-          for (var prop in emojis) {
-            if (Math.random() < 1 / ++count) {
-              result = prop;
-            }
-          }
-
-          return ':' + result + ': ';
-        }
-      } else if (program.K) {
+      if (program.K) {
         var type = program.args[1];
 
         if (type === 'bug' || type === 'b') {
@@ -99,6 +106,7 @@ module.exports = function (program) {
   }
 
   return {
-    getEmoji: getEmoji
+    getEmoji: getEmoji,
+    search: search
   };
 };

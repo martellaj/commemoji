@@ -15,7 +15,7 @@ describe('emoji searches', function () {
     var result = getEmoji.bySearch('bagel');
     expect(result).not.toBe(null);
   });
-  
+
   it('returns the expected emoji for "bug" commit type', function () {
     var getEmoji = require('../get_emoji')({});
 

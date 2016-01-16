@@ -39,7 +39,7 @@ program.parse(process.argv);
 
 // The emoji to append to the commit message.
 var emoji;
-  
+
 // Depending on chosen flags, get an emoji is whichever way the user signified.
 if (program.S && program.K) {
   console.log(chalk.red('You can\'t search and use a common commit type at the same time.'));

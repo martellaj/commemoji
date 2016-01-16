@@ -39,7 +39,7 @@ module.exports = function (program) {
       return ':' + result + ': ';
     }
   }
-  
+
   /**
    * @name byCommitType
    * @desc Returns the emoji for the given commit type.
@@ -85,7 +85,7 @@ module.exports = function (program) {
       };
     }
   }
-  
+
   /**
    * @name
    * @desc Returns a random emoji.

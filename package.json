@@ -7,7 +7,7 @@
   },
   "scripts": {
     "undo": "git reset --soft HEAD~",
-    "lint": "semistandard | snazzy"
+    "lint": "semistandard | snazzy || true"
   },
   "main": "app.js",
   "author": "Joe Martella",

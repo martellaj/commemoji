@@ -47,7 +47,7 @@ module.exports = function (program) {
    * @returns The emoji corresponding to the commit type.
    */
   function byCommitType (commitType) {
-    var type = program.args[1];
+    var type = commitType;
 
     if (type === 'bug' || type === 'b') {
       return ':bug: ';

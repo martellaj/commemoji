@@ -22,11 +22,11 @@ describe('emoji searches', function () {
     var result = getEmoji.byCommitType('bug');
     expect(result).toBe(':bug: ');
   });
-  
+
   it('returns an emoji for random get', function () {
     var getEmoji = require('../get_emoji')({});
 
     var result = getEmoji.random();
-    expect(result).not.toBe(':bug :');
+    expect(result).toMatch(/:.*: /);
   });
 });

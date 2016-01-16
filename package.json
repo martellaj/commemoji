@@ -17,5 +17,8 @@
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
     "emojilib": "^1.1.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1"
   }
 }

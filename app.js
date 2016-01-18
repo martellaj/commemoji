@@ -71,7 +71,12 @@ if (emoji === null) {
 // Append the emoji to the commit message and commit.
 exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
   if (error) {
-    console.error(error);
+    if (error.code === 1) {
+      console.log(chalk.red('Something went wrong! Make sure you have at least one file staged and try again.'));
+    } else {
+      console.log(chalk.red('Woah! You hit an error I haven\'t seen yet. Please send the following details to martellaj@live.com. Thank you!'));
+      console.error(error); 
+    }
   } else {
     console.log(stdout);
   }

@@ -92,12 +92,6 @@ module.exports = function (program) {
 
     return ':' + result + ': ';
   }
-
-  return {
-    bySearch: bySearch,
-    byCommitType: byCommitType,
-    random: random
-  };
   
   /**
    * @analyze
@@ -105,4 +99,14 @@ module.exports = function (program) {
    * @param message The commit message.
    * @returns An emoji based on the commit message.
    */
+  function analyze (message) {
+    var words = message.split(' ');
+  }
+  
+  return {
+    bySearch: bySearch,
+    byCommitType: byCommitType,
+    analyze: analyze,
+    random: random
+  };
 };

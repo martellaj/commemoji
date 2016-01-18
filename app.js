@@ -59,7 +59,7 @@ if (program.S && program.K) {
     process.exit();
   }
 } else {
-  emoji = getEmoji.random();
+  emoji = getEmoji.analyze(program.args[0]);
 }
 
 // If search comes up empty, get a random emoji.

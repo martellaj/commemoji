@@ -8,7 +8,7 @@ var chalk = require('chalk');
 var getEmoji = require('./get_emoji')(program);
 
 program
-  .version('1.0.0')
+  .version('1.1.3')
   .option('-m', 'Your plain, old commit message.')
   .option('-s', 'A seach query to get a relevant emoji.')
   .option('-k', 'A keyword pertaining to common commit types.');

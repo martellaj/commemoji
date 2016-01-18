@@ -109,4 +109,11 @@ module.exports = function (program) {
     byCommitType: byCommitType,
     random: random
   };
+  
+  /**
+   * @analyze
+   * @desc Returns an emoji based on theh commit message.
+   * @param message The commit message.
+   * @returns An emoji based on the commit message.
+   */
 };

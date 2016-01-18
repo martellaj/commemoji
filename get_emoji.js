@@ -24,8 +24,7 @@ module.exports = function (program) {
 
     // If any options have been found, return a random option.
     if (options.length > 0) {
-      return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
-      // If there are no options, just get a random emoji from the library.
+      return ':' + options[Math.floor(Math.random() * options.length)] + ': ';
     } else {
       return null;
     }
@@ -101,6 +100,25 @@ module.exports = function (program) {
    */
   function analyze (message) {
     var words = message.split(' ');
+    var options = [];
+    
+    for (var i = 0; i < words.length; i++) {
+      // TODO: Strip out punctuation on the word before searching.
+      var option = bySearch(words[i].toLowerCase());
+      
+      if (option) {
+        options.push(option);
+      }
+    }
+    
+    console.log(options);
+    
+    // If any options have been found, return a random option.
+    if (options.length > 0) {
+      return options[Math.floor(Math.random() * options.length)];
+    } else {
+      return null;
+    }
   }
   
   return {

@@ -58,6 +58,7 @@ if (program.S && program.K) {
     console.log(chalk.red('That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".')); 
     process.exit();
   }
+// If no flags were specified, try picking one out that makes sense for the commit message.
 } else {
   emoji = getEmoji.analyze(program.args[0]);
 }

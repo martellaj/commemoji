@@ -44,7 +44,7 @@ var emoji;
 
 // Depending on chosen flags, get an emoji is whichever way the user signified.
 if (program.S && program.K) {
-  console.log(chalk.red('You can\'t search and use a common commit type at the same time.'));
+  console.log(chalk.red("You can't search and use a common commit type at the same time."));
   process.exit();
 // If the "-s" flag is on, search for an emoji.
 } else if (program.S) {
@@ -52,10 +52,10 @@ if (program.S && program.K) {
 // If the "-k" flag is on, get the emoji corresponding to the commit type.
 } else if (program.K) {
   emoji = getEmoji.byCommitType(program.args[1]);
-  
+
   // If user specifies an unknown commit type, exit.
   if (emoji === null) {
-    console.log(chalk.red('That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".')); 
+    console.log(chalk.red('That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'));
     process.exit();
   }
 // If no flags were specified, try picking one out that makes sense for the commit message.
@@ -74,8 +74,8 @@ exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout,
     if (error.code === 1) {
       console.log(chalk.red('Something went wrong! Make sure you have at least one file staged and try again.'));
     } else {
-      console.log(chalk.red('Woah! You hit an error I haven\'t seen yet. Please send the following details to martellaj@live.com. Thank you!'));
-      console.error(error); 
+      console.log(chalk.red("Woah! You hit an error I haven't seen yet. Please send the following details to martellaj@live.com. Thank you!"));
+      console.error(error);
     }
   } else {
     console.log(stdout);

@@ -91,7 +91,7 @@ module.exports = function (program) {
 
     return ':' + result + ': ';
   }
-  
+
   /**
    * @analyze
    * @desc Returns an emoji based on theh commit message.
@@ -101,16 +101,16 @@ module.exports = function (program) {
   function analyze (message) {
     var words = message.split(' ');
     var options = [];
-    
+
     for (var i = 0; i < words.length; i++) {
       // TODO: Strip out punctuation on the word before searching.
       var option = bySearch(words[i].toLowerCase());
-      
+
       if (option) {
         options.push(option);
       }
     }
-    
+
     // If any options have been found, return a random option.
     if (options.length > 0) {
       return options[Math.floor(Math.random() * options.length)];
@@ -118,7 +118,7 @@ module.exports = function (program) {
       return null;
     }
   }
-  
+
   return {
     bySearch: bySearch,
     byCommitType: byCommitType,

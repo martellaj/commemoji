@@ -1,6 +1,6 @@
 /* global describe, expect, it */
 
-describe('emoji searches', function () {
+describe('tests the bySearch function', function () {
   it('returns an expected result of "fire" search', function () {
     var getEmoji = require('../get_emoji')({});
 
@@ -13,20 +13,6 @@ describe('emoji searches', function () {
     var getEmoji = require('../get_emoji')({});
 
     var result = getEmoji.bySearch('bagel');
-    expect(result).not.toBe(null);
-  });
-
-  it('returns the expected emoji for "bug" commit type', function () {
-    var getEmoji = require('../get_emoji')({});
-
-    var result = getEmoji.byCommitType('bug');
-    expect(result).toBe(':bug: ');
-  });
-
-  it('returns an emoji for random get', function () {
-    var getEmoji = require('../get_emoji')({});
-
-    var result = getEmoji.random();
-    expect(result).toMatch(/:.*: /);
+    expect(result).toBe(null);
   });
 });

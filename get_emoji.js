@@ -24,19 +24,9 @@ module.exports = function (program) {
 
     // If any options have been found, return a random option.
     if (options.length > 0) {
-      return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
-      // If there are no options, just get a random emoji from the library.
+      return ':' + options[Math.floor(Math.random() * options.length)] + ': ';
     } else {
-      var result;
-      var count = 0;
-
-      for (var prop in emojis) {
-        if (Math.random() < 1 / ++count) {
-          result = prop;
-        }
-      }
-
-      return ':' + result + ': ';
+      return null;
     }
   }
 
@@ -80,9 +70,7 @@ module.exports = function (program) {
     } else if (type === 'lint' || type === 'linter') {
       return ':shirt: ';
     } else {
-      return {
-        error: 'That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'
-      };
+      return null;
     }
   }
 
@@ -104,9 +92,37 @@ module.exports = function (program) {
     return ':' + result + ': ';
   }
 
+  /**
+   * @analyze
+   * @desc Returns an emoji based on theh commit message.
+   * @param message The commit message.
+   * @returns An emoji based on the commit message.
+   */
+  function analyze (message) {
+    var words = message.split(' ');
+    var options = [];
+
+    for (var i = 0; i < words.length; i++) {
+      // TODO: Strip out punctuation on the word before searching.
+      var option = bySearch(words[i].toLowerCase());
+
+      if (option) {
+        options.push(option);
+      }
+    }
+
+    // If any options have been found, return a random option.
+    if (options.length > 0) {
+      return options[Math.floor(Math.random() * options.length)];
+    } else {
+      return null;
+    }
+  }
+
   return {
     bySearch: bySearch,
     byCommitType: byCommitType,
+    analyze: analyze,
     random: random
   };
 };

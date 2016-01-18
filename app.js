@@ -1,12 +1,14 @@
 #! /usr/bin/env node
 
+/* global process */
+
 var program = require('commander');
 var exec = require('child_process').exec;
 var chalk = require('chalk');
 var getEmoji = require('./get_emoji')(program);
 
 program
-  .version('1.0.0')
+  .version('1.1.3')
   .option('-m', 'Your plain, old commit message.')
   .option('-s', 'A seach query to get a relevant emoji.')
   .option('-k', 'A keyword pertaining to common commit types.');
@@ -40,9 +42,15 @@ program.parse(process.argv);
 // The emoji to append to the commit message.
 var emoji;
 
+// Throw an error and exit if no commit message is supplied.
+if (program.args[0] === '' || program.args[0] === undefined || program.args[0] === null) {
+  console.log(chalk.red('You have to specify a commit message.'));
+  process.exit();
+}
+
 // Depending on chosen flags, get an emoji is whichever way the user signified.
 if (program.S && program.K) {
-  console.log(chalk.red('You can\'t search and use a common commit type at the same time.'));
+  console.log(chalk.red("You can't search and use a common commit type at the same time."));
   process.exit();
 // If the "-s" flag is on, search for an emoji.
 } else if (program.S) {
@@ -50,20 +58,32 @@ if (program.S && program.K) {
 // If the "-k" flag is on, get the emoji corresponding to the commit type.
 } else if (program.K) {
   emoji = getEmoji.byCommitType(program.args[1]);
+
+  // If user specifies an unknown commit type, exit.
+  if (emoji === null) {
+    console.log(chalk.red('That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'));
+    process.exit();
+  }
+// If no flags were specified, try picking one out that makes sense for the commit message.
 } else {
+  emoji = getEmoji.analyze(program.args[0]);
+}
+
+// If search comes up empty, get a random emoji.
+if (emoji === null) {
   emoji = getEmoji.random();
 }
 
-// Print an error if there is one.
-if (emoji.error) {
-  console.log(chalk.red(emoji.error));
-// If there is no error, "git commit" with the emojified commit message.
-} else {
-  exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
-    if (error) {
-      console.error(error);
+// Append the emoji to the commit message and commit.
+exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+  if (error) {
+    if (error.code === 1) {
+      console.log(chalk.red('Something went wrong! Make sure you have at least one file staged and try again.'));
     } else {
-      console.log(stdout);
+      console.log(chalk.red("Woah! You hit an error I haven't seen yet. Please send the following details to martellaj@live.com. Thank you!"));
+      console.error(error);
     }
-  });
-}
+  } else {
+    console.log(stdout);
+  }
+});

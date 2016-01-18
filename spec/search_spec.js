@@ -13,7 +13,7 @@ describe('emoji searches', function () {
     var getEmoji = require('../get_emoji')({});
 
     var result = getEmoji.bySearch('bagel');
-    expect(result).not.toBe(null);
+    expect(result).toBe(null);
   });
 
   it('returns the expected emoji for "bug" commit type', function () {

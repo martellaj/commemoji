@@ -38,15 +38,15 @@ $ commemoji -k "Fix bug causing random emojis to be returned." "bug"
 * :arrow_down: "downgrade dep" | "dd" - When downgrading dependencies.
 * :shirt: "lint" - When removing/adding linter warnings. 
 
-### Search for an emoji
-Want to express something specific with your commit? Feel a certain way? Use the `-s` flag with a keyword to search for.
+### A desired emoji
+Want to express something specific with your commit? Just want that :poop:? Use the `-s` flag and specify a query after your commit message.
 
 ```
 $ commemoji -s "This code is legit, but this message is boring." "fire"
 ```
 
-### Random emoji
-Not sure how you feel about the commit? Omit the `-k` flag and just supply your message and we'll give you a random emoji.
+### A descriptive emoji
+Not sure how you *feel* about the commit? Just supply your message and we'll give you an emoji that describes your commit message, or a random one if we can't find one that does.
 
 ```
 $ commemoji "This code is legit, but this message is boring."

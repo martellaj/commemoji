@@ -111,8 +111,6 @@ module.exports = function (program) {
       }
     }
     
-    console.log(options);
-    
     // If any options have been found, return a random option.
     if (options.length > 0) {
       return options[Math.floor(Math.random() * options.length)];

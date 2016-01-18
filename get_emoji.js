@@ -101,12 +101,22 @@ module.exports = function (program) {
   function analyze (message) {
     var words = message.split(' ');
     var options = [];
+    
+    // These words aren't descriptive and shouldn't be counted in analysis.
+    // Definitely not a complete list, always can add more.
+    var blacklist = ['a', 'an', 'the', 'on', 'in', 'some', 'that', 'you', 'those', 'its', 'thats', 'now', 'is', 'and'];
 
     for (var i = 0; i < words.length; i++) {
-      var option = bySearch(words[i].toLowerCase().replace(/[^\w]/gi, ''));
+      var query = words[i].toLowerCase().replace(/[^\w]/gi, '');
+      
+      if (blacklist.indexOf(query) > -1) {
+        continue;
+      } else {
+        var option = bySearch(query);
 
-      if (option) {
-        options.push(option);
+        if (option) {
+          options.push(option);
+        }
       }
     }
 

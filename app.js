@@ -42,6 +42,12 @@ program.parse(process.argv);
 // The emoji to append to the commit message.
 var emoji;
 
+// Throw an error and exit if no commit message is supplied.
+if (program.args[0] === '' || program.args[0] === undefined || program.args[0] === null) {
+  console.log(chalk.red('You have to specify a commit message.'));
+  process.exit();
+}
+
 // Depending on chosen flags, get an emoji is whichever way the user signified.
 if (program.S && program.K) {
   console.log(chalk.red("You can't search and use a common commit type at the same time."));

@@ -27,16 +27,7 @@ module.exports = function (program) {
       return ' :' + options[Math.floor(Math.random() * options.length)] + ': ';
       // If there are no options, just get a random emoji from the library.
     } else {
-      var result;
-      var count = 0;
-
-      for (var prop in emojis) {
-        if (Math.random() < 1 / ++count) {
-          result = prop;
-        }
-      }
-
-      return ':' + result + ': ';
+      return null;
     }
   }
 
@@ -80,9 +71,7 @@ module.exports = function (program) {
     } else if (type === 'lint' || type === 'linter') {
       return ':shirt: ';
     } else {
-      return {
-        error: 'That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".'
-      };
+      return null;
     }
   }
 

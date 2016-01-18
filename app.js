@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+/* global process */
+
 var program = require('commander');
 var exec = require('child_process').exec;
 var chalk = require('chalk');
@@ -50,20 +52,26 @@ if (program.S && program.K) {
 // If the "-k" flag is on, get the emoji corresponding to the commit type.
 } else if (program.K) {
   emoji = getEmoji.byCommitType(program.args[1]);
+  
+  // If user specifies an unknown commit type, exit.
+  if (emoji === null) {
+    console.log(chalk.red('That isn\'t a known commit type. For a list of supported commit types, run "commemoji -h".')); 
+    process.exit();
+  }
 } else {
   emoji = getEmoji.random();
 }
 
-// Print an error if there is one.
-if (emoji.error) {
-  console.log(chalk.red(emoji.error));
-// If there is no error, "git commit" with the emojified commit message.
-} else {
-  exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log(stdout);
-    }
-  });
+// If search comes up empty, get a random emoji.
+if (emoji === null) {
+  emoji = getEmoji.random();
 }
+
+// Append the emoji to the commit message and commit.
+exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(stdout);
+  }
+});

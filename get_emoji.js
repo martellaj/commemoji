@@ -103,8 +103,7 @@ module.exports = function (program) {
     var options = [];
 
     for (var i = 0; i < words.length; i++) {
-      // TODO: Strip out punctuation on the word before searching.
-      var option = bySearch(words[i].toLowerCase());
+      var option = bySearch(words[i].toLowerCase().replace(/[^\w]/gi, ''));
 
       if (option) {
         options.push(option);

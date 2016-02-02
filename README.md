@@ -1,4 +1,5 @@
 # commemoji
+[![npm version](https://badge.fury.io/js/commemoji.svg)](https://badge.fury.io/js/commemoji)
 [![Build Status](https://travis-ci.org/martellaj/commemoji.svg?branch=master)](https://travis-ci.org/martellaj/commemoji) [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
 A command line tool to make emojify your boring commit messages. :star2:

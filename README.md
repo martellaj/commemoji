@@ -56,7 +56,7 @@ $ commemoji "This code is legit, but this message is boring."
 ```
 
 ## Thanks
-Thanks to @muan and [emojilib]() for providing an awesome resource for GitHub-supported emojis. :clap: I frequently used their [emoji searcher](http://emoji.muan.co/) before creating this tool.
+Thanks to @muan and [emojilib](https://github.com/muan/emojilib) for providing an awesome resource for GitHub-supported emojis. :clap: I frequently used their [emoji searcher](http://emoji.muan.co/) before creating this tool.
 
 ## License
 MIT :copyright: Joe Martella

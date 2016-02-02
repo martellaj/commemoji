@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 var program = require('commander');
 var childProcess = require('child_process');
 var chalk = require('chalk');

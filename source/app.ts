@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import program = require('commander');
 import childProcess = require('child_process');
 import chalk = require('chalk');

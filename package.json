@@ -8,7 +8,9 @@
   "scripts": {
     "undo": "git reset --soft HEAD~",
     "lint": "semistandard | snazzy || true",
-    "test": "jasmine"
+    "test": "jasmine",
+    "build": "rm -rf bin && tsc",
+    "postinstall": "typings install && npm run build"
   },
   "main": "app.js",
   "author": "Joe Martella",

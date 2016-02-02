@@ -1,14 +1,10 @@
-#! /usr/bin/env node
-
-/* global process */
-
-var program = require('commander');
-var exec = require('child_process').exec;
-var chalk = require('chalk');
-var getEmoji = require('./get_emoji')(program);
+import program = require('commander');
+import childProcess = require('child_process');
+import chalk = require('chalk');
+import getEmoji = require('./get_emoji');
 
 program
-  .version('1.1.3')
+  .version('1.1.4')
   .option('-m', 'Your plain, old commit message.')
   .option('-s', 'A seach query to get a relevant emoji.')
   .option('-k', 'A keyword pertaining to common commit types.');
@@ -49,14 +45,14 @@ if (program.args[0] === '' || program.args[0] === undefined || program.args[0] =
 }
 
 // Depending on chosen flags, get an emoji is whichever way the user signified.
-if (program.S && program.K) {
+if (program.opts().S && program.opts().K) {
   console.log(chalk.red("You can't search and use a common commit type at the same time."));
   process.exit();
 // If the "-s" flag is on, search for an emoji.
-} else if (program.S) {
+} else if (program.opts().S) {
   emoji = getEmoji.bySearch(program.args[1]);
 // If the "-k" flag is on, get the emoji corresponding to the commit type.
-} else if (program.K) {
+} else if (program.opts().K) {
   emoji = getEmoji.byCommitType(program.args[1]);
 
   // If user specifies an unknown commit type, exit.
@@ -75,12 +71,12 @@ if (emoji === null) {
 }
 
 // Append the emoji to the commit message and commit.
-exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+childProcess.exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
   if (error) {
-    if (error.code === 1) {
+    if (error) {
       console.log(chalk.red('Something went wrong! Make sure you have at least one file staged and try again.'));
     } else {
-      console.log(chalk.red("Woah! You hit an error I haven't seen yet. Please send the following details to martellaj@live.com. Thank you!"));
+      console.log(chalk.red('Woah! You hit an error I haven\'t seen yet. Please send the following details to martellaj@live.com. Thank you!'));
       console.error(error);
     }
   } else {

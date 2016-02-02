@@ -6,7 +6,7 @@ var emojis = require('emojilib');
  * @param query The query to search the emoji list for.
  * @returns A random emoji to append.
  */
-export function bySearch(query: string) {
+export function bySearch(query: string): string {
   var options = [];
 
   // Search over all emojis, looking for a matching keyword.
@@ -35,7 +35,7 @@ export function bySearch(query: string) {
  * @param commitType The commit type.
  * @returns The emoji corresponding to the commit type.
  */
-export function byCommitType(commitType: string) {
+export function byCommitType(commitType: string): string {
   var type = commitType;
 
   if (type === 'bug' || type === 'b') {
@@ -78,7 +78,7 @@ export function byCommitType(commitType: string) {
  * @desc Returns a random emoji.
  * @returns A random emoji.
  */
-export function random() {
+export function random(): string {
   var result;
   var count = 0;
 
@@ -97,7 +97,7 @@ export function random() {
  * @param message The commit message.
  * @returns An emoji based on the commit message.
  */
-export function analyze(message: string) {
+export function analyze(message: string): string {
   var words = message.split(' ');
   var options = [];
     

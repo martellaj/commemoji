@@ -6,7 +6,7 @@ import chalk = require('chalk');
 import getEmoji = require('./get_emoji');
 
 program
-  .version('1.1.6')
+  .version('1.1.7')
   .option('-s', 'A seach query to get a relevant emoji.')
   .option('-k', 'A keyword pertaining to common commit types.')
   .option('-r', 'Replaces keywords in your commit message with emojis.');

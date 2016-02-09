@@ -7,9 +7,9 @@ import getEmoji = require('./get_emoji');
 
 program
   .version('1.1.6')
-  .option('-m', 'Your plain, old commit message.')
   .option('-s', 'A seach query to get a relevant emoji.')
-  .option('-k', 'A keyword pertaining to common commit types.');
+  .option('-k', 'A keyword pertaining to common commit types.')
+  .option('-r', 'Replaces keywords in your commit message with emojis.');
 
 // List commit types underneath help.
 program.on('--help', function () {
@@ -72,8 +72,15 @@ if (emoji === null) {
   emoji = getEmoji.random();
 }
 
+// If the "-r" flag is on, replace keywords in the commit message with emojis.
+let message = program.args[0];
+
+if (program.opts().R) {
+  message = getEmoji.replaceWithEmojis(message);
+}
+
 // Append the emoji to the commit message and commit.
-childProcess.exec('git commit -m "' + emoji + program.args[0] + '"', function (error, stdout, stderr) {
+childProcess.exec('git commit -m "' + emoji + message + '"', function (error, stdout, stderr) {
   if (error) {
     if (error) {
       console.log(chalk.red('Something went wrong! Make sure you have at least one file staged and try again.'));

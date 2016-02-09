@@ -6,7 +6,7 @@ var emojis = require('emojilib');
  * @param query The query to search the emoji list for.
  * @returns A random emoji to append.
  */
-export function bySearch(query: string): string {
+export function bySearch (query: string): string {
   var options = [];
 
   // Search over all emojis, looking for a matching keyword.
@@ -35,7 +35,7 @@ export function bySearch(query: string): string {
  * @param commitType The commit type.
  * @returns The emoji corresponding to the commit type.
  */
-export function byCommitType(commitType: string): string {
+export function byCommitType (commitType: string): string {
   var type = commitType;
 
   if (type === 'bug' || type === 'b') {
@@ -78,7 +78,7 @@ export function byCommitType(commitType: string): string {
  * @desc Returns a random emoji.
  * @returns A random emoji.
  */
-export function random(): string {
+export function random (): string {
   var result;
   var count = 0;
 
@@ -97,7 +97,7 @@ export function random(): string {
  * @param message The commit message.
  * @returns An emoji based on the commit message.
  */
-export function analyze(message: string): string {
+export function analyze (message: string): string {
   var words = message.split(' ');
   var options = [];
     
@@ -125,4 +125,31 @@ export function analyze(message: string): string {
   } else {
     return null;
   }
+}
+
+/**
+ * Replaces words in the commit message with emojis, provided they exist as a key.
+ * 
+ * @name replaceWithEmojis
+ * @param message The commit message
+ * @returns The commit message with words replaced by emojis
+ */
+export function replaceWithEmojis (message: string): string {
+  var words = message.split(' ');
+
+  for (var i = 0; i < words.length; i++) {
+    var query = words[i].toLowerCase().replace(/[^\w]/gi, '');
+
+    // Search over all emojis, looking for a matching keyword.
+    for (var key in emojis) {
+      if (emojis.hasOwnProperty(key)) {
+        if (key === query) {
+          words[i] = words[i].toLowerCase().replace(key, ':' + query + ':');
+          break;
+        }
+      }
+    }
+  }
+  
+  return words.join(' ');
 }

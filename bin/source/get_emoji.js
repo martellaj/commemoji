@@ -106,4 +106,20 @@ function analyze(message) {
     }
 }
 exports.analyze = analyze;
+function replaceWithEmojis(message) {
+    var words = message.split(' ');
+    for (var i = 0; i < words.length; i++) {
+        var query = words[i].toLowerCase().replace(/[^\w]/gi, '');
+        for (var key in emojis) {
+            if (emojis.hasOwnProperty(key)) {
+                if (key === query) {
+                    words[i] = words[i].toLowerCase().replace(key, ':' + query + ':');
+                    break;
+                }
+            }
+        }
+    }
+    return words.join(' ');
+}
+exports.replaceWithEmojis = replaceWithEmojis;
 //# sourceMappingURL=get_emoji.js.map

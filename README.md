@@ -55,6 +55,9 @@ Not sure how you *feel* about the commit? Just supply your message and we'll giv
 $ commemoji "This code is legit, but this message is boring."
 ```
 
+### Replace keywords with emojis
+Use the `-r` flag to replace any keywords in your commit message with emojis. This flag can be used with any of the other flags or by itself.
+
 ## Thanks
 Thanks to @muan and [emojilib](https://github.com/muan/emojilib) for providing an awesome resource for GitHub-supported emojis. :clap: I frequently used their [emoji searcher](http://emoji.muan.co/) before creating this tool.
 
